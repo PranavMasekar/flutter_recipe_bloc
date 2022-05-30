@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_recipe_bloc/business_logic/bloc/recipe_events.dart';
+
 import 'business_logic/bloc/recipe_bloc.dart';
+import 'business_logic/bloc/recipe_events.dart';
 import 'presentation/screens/home.dart';
 
 void main() {
@@ -14,7 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RecipeBloc()..add(GetRecipies()),
-      lazy: false,
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
