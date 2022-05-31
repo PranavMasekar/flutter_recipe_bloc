@@ -9,8 +9,9 @@ abstract class RecipeEvents extends Equatable {
 
 class GetRecipies extends RecipeEvents {
   final List<RecipeModel> recipies;
-
-  const GetRecipies({
+  String query = "";
+  GetRecipies({
+    required this.query,
     this.recipies = const <RecipeModel>[],
   });
   @override

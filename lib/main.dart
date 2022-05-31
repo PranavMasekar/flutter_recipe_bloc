@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RecipeBloc()..add(GetRecipies()),
+      create: (context) => RecipeBloc()..add(GetRecipies(query: "chicken")),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

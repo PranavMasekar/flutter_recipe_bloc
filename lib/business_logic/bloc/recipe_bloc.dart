@@ -6,14 +6,15 @@ import 'recipe_events.dart';
 import 'recipe_state.dart';
 
 class RecipeBloc extends Bloc<RecipeEvents, RecipeStates> {
-  RecipeBloc() : super(RecipeLoadedState()) {
-    on<GetRecipies>(_onGetRecipies);
+  RecipeBloc() : super(RecipeLoadedState(recipies: [])) {
+    on<GetRecipies>(_getRecipies);
   }
   final RecipeRepository _repository = RecipeRepository();
-  Future<void> _onGetRecipies(
+  Future<void> _getRecipies(
       GetRecipies event, Emitter<RecipeStates> emit) async {
+    List<RecipeModel> recipies = [];
     emit(RecipeLoadingState());
-    List<RecipeModel> recipies = await _repository.loadRecipies("chicken");
+    recipies = await _repository.loadRecipies(event.query);
     emit(
       RecipeLoadedState(recipies: recipies),
     );

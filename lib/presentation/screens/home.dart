@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../business_logic/bloc/recipe_events.dart';
+import '../pages/error.dart';
 import '../../business_logic/bloc/recipe_bloc.dart';
 import '../../business_logic/bloc/recipe_state.dart';
 
@@ -55,6 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (context, state) {
                             return Expanded(
                               child: TextField(
+                                onSubmitted: ((value) {
+                                  BlocProvider.of<RecipeBloc>(context)
+                                      .add(GetRecipies(query: value));
+                                }),
                                 controller: state.searchController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -87,10 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 BlocBuilder<RecipeBloc, RecipeStates>(
                   builder: (context, state) {
+                    if (state is RecipeLoadingFailure) {
+                      return ErrorPage();
+                    }
                     if (state is RecipeLoadingState) {
                       return Center(child: CircularProgressIndicator());
-                    }
-                    if (state is RecipeLoadedState) {
+                    } else if (state is RecipeLoadedState) {
                       return ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
