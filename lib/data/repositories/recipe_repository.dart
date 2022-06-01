@@ -8,10 +8,8 @@ class RecipeRepository {
   // Load All Recipies from service
   Future<List<RecipeModel>> loadRecipies(String query) async {
     List<RecipeModel> recipies = [];
-    Response response = await _service.getRecipe(query);
-    if (response.statusCode != 200) {
-      return [];
-    }
+    Response? response = await _service.getRecipe(query);
+    if (response == null) return [];
     Map<String, dynamic> res = response.data;
     for (var element in res["hits"]) {
       recipies.add(RecipeModel.fromJson(element["recipe"]));

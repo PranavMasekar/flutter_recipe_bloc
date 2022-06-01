@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import '../../data/models/recipe_model.dart';
+
+import '../../../data/models/recipe_model.dart';
 
 abstract class RecipeStates extends Equatable {
   final TextEditingController searchController = TextEditingController();
