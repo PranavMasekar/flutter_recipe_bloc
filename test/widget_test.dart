@@ -17,7 +17,7 @@ void main() {
     await tester.pumpWidget(MyApp(connectivity: Connectivity()));
 
     // Verify that our counter starts at 0.
-    // expect(find.text('0'), findsOneWidget);
+    expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
 
     // Tap the '+' icon and trigger a frame.
@@ -25,7 +25,7 @@ void main() {
     await tester.pump();
 
     // Verify that our counter has incremented.
-    // expect(find.text('0'), findsNothing);
-    // expect(find.text('1'), findsOneWidget);
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
   });
 }
