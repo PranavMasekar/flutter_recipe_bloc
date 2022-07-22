@@ -17,10 +17,8 @@ class ErrorPage extends StatelessWidget {
           padding: EdgeInsets.all(15),
           child: Row(
             children: [
-              Text(
-                "No Internet Connection!! Please try again",
-                style: TextStyle(),
-              )
+              Text("No Internet Connection!! Please try again",
+                  style: TextStyle())
             ],
           ),
         ),
