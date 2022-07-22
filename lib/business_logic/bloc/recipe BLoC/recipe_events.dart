@@ -14,7 +14,9 @@ class GetRecipies extends RecipeEvents {
   GetRecipies({
     required this.query,
     this.recipies = const <RecipeModel>[],
-  });
+  }) {
+    print("Get Recipe Event Started");
+  }
   @override
   List<Object?> get props => [recipies];
 }
